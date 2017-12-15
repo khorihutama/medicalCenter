@@ -11,7 +11,17 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+       'admin' => [
+           'class' => 'mdm\admin\Module',
+           'layout' => 'left-menu'
+       ],
+       'gridview' => ['class' => 'kartik\grid\Module']
+   ],
     'components' => [
+        'authManager' => [
+             'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
+         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'pbppJKXtuVlNFXPwx9ntvmdYOJuI311A',
@@ -43,14 +53,18 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+    ],
+      'as access' => [
+         'class' => 'mdm\admin\components\AccessControl',
+         'allowActions' => [
+             'site/*',
+       ]
     ],
     'params' => $params,
 ];
