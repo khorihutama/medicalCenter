@@ -19,7 +19,7 @@ class ObatSearch extends Obat
     {
         return [
             [['id_obat', 'stock'], 'integer'],
-            [['nama_obat', 'cara_pemakaian'], 'safe'],
+            [['nama_obat', 'cara_pemakaian', 'merk_obat'], 'safe'],
         ];
     }
 
@@ -64,7 +64,8 @@ class ObatSearch extends Obat
         ]);
 
         $query->andFilterWhere(['like', 'nama_obat', $this->nama_obat])
-            ->andFilterWhere(['like', 'cara_pemakaian', $this->cara_pemakaian]);
+            ->andFilterWhere(['like', 'cara_pemakaian', $this->cara_pemakaian])
+            ->andFilterWhere(['like', 'merk_obat', $this->merk_obat]);
 
         return $dataProvider;
     }

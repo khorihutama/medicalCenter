@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id_obat
  * @property string $nama_obat
  * @property string $cara_pemakaian
+ * @property string $merk_obat
  * @property integer $stock
  */
 class Obat extends \yii\db\ActiveRecord
@@ -28,9 +29,9 @@ class Obat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama_obat', 'cara_pemakaian', 'stock'], 'required'],
+            [['nama_obat', 'cara_pemakaian', 'merk_obat', 'stock'], 'required'],
             [['stock'], 'integer'],
-            [['nama_obat', 'cara_pemakaian'], 'string', 'max' => 255],
+            [['nama_obat', 'cara_pemakaian', 'merk_obat'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,6 +44,7 @@ class Obat extends \yii\db\ActiveRecord
             'id_obat' => 'Id Obat',
             'nama_obat' => 'Nama Obat',
             'cara_pemakaian' => 'Cara Pemakaian',
+            'merk_obat' => 'Merk Obat',
             'stock' => 'Stock',
         ];
     }

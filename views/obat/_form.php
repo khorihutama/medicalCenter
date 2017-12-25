@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cara_pemakaian')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'merk_obat')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'stock')->textInput() ?>
 
     <div class="form-group">

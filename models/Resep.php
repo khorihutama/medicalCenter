@@ -29,8 +29,8 @@ class Resep extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_resep', 'nama_pasien', 'id_obat', 'dosis', 'status'], 'required'],
-            [['id_resep', 'id_obat', 'dosis', 'status'], 'integer'],
+            [['nama_pasien', 'id_obat', 'dosis'], 'required'],
+            [['id_obat', 'dosis', 'status'], 'integer'],
             [['nama_pasien'], 'string', 'max' => 255],
         ];
     }

@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_obat',
             'nama_obat',
             'cara_pemakaian',
+            'merk_obat',
             'stock',
         ],
     ]) ?>
