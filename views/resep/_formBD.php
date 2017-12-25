@@ -29,7 +29,7 @@ $this->registerJs($js);
 
 <div class="resep-form">
 
-    <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'nama_pasien')->textInput(['maxlength' => true]) ?>
 
@@ -42,7 +42,7 @@ $this->registerJs($js);
        'min' => 1, // 0 or 1 (default 1)
        'insertButton' => '.add-item', // css class
        'deleteButton' => '.remove-item', // css class
-       'model' => $model[0],
+       'model' => $modelsAddress[0],
        'formId' => 'dynamic-form',
        'formFields' => [
           'id_obat',
@@ -52,53 +52,19 @@ $this->registerJs($js);
       ]); ?>
       <div class="panel panel-default">
               <div class="panel-heading">
-                <div class="panel-heading">
-                   <i class="fa fa-medkit"></i> Resep
-                   <button type="button" class="pull-right add-item btn btn-success btn-xs"><i class="fa fa-plus"></i> Add prescription</button>
-                 <div class="clearfix"></div>
-              </div>
-
-       <div class="panel-body container-items"><!-- widgetContainer -->
-           <?php foreach ($model as $index => $model): ?>
-               <div class="item panel panel-default"><!-- widgetBody -->
-                   <div class="panel-heading">
-                       <span class="panel-title-address">Address: <?= ($index + 1) ?></span>
-                       <button type="button" class="pull-right remove-item btn btn-danger btn-xs"><i class="fa fa-minus"></i></button>
-                       <div class="clearfix"></div>
-                   </div>
-                   <div class="panel-body">
-                       <?php
-                           // necessary for update action.
-                           if (!$model->isNewRecord) {
-                               echo Html::activeHiddenInput($model, "[{$index}]id");
-                           }
-                       ?>
     <!-- <= $form->field($model, 'id_obat')->textInput() ?> -->
-                        <?= $form->field($model, "[{$index}]id_obat")->widget(Select2::classname(), [
-                            'data' => $data,
-                            'options' => ['placeholder' => 'Pilih obat ...'],
-                            'pluginOptions' => [
-                            'allowClear' => true
-                            ],
-                        ]); ?>
-
-                        <div class="row">
-                              <div class="col-sm-6">
-                                  <?= $form->field($model, "[{$index}]dosis")->textInput() ?>
-                              </div>
-                              <div class="col-sm-6">
-                                  <?= $form->field($model, "[{$index}]status")->textInput() ?>
-                              </div>
-                       </div>
-                      </div>
-                     </div>
-                   </div>
-               <?php endforeach; ?>
-           </div>
-       </div>
-       <?php DynamicFormWidget::end(); ?>
+    <?= $form->field($model, 'id_obat')->widget(Select2::classname(), [
+        'data' => $data,
+        'options' => ['placeholder' => 'Pilih obat ...'],
+        'pluginOptions' => [
+        'allowClear' => true
+        ],
+    ]); ?>
 
 
+    <?= $form->field($model, 'dosis')->textInput() ?>
+
+    <?= $form->field($model, 'status')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
