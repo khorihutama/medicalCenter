@@ -8,7 +8,7 @@ use app\models\ResepSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Obat;
 /**
  * ResepController implements the CRUD actions for Resep model.
  */
@@ -64,12 +64,13 @@ class ResepController extends Controller
     public function actionCreate()
     {
         $model = new Resep();
-
+        $modelsObat= [new Resep];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_resep]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'modelsObat' => (empty($modelsObat)) ? [new Resep] : $modelsObat
             ]);
         }
     }
@@ -83,12 +84,14 @@ class ResepController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelsObat= [new Resep];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_resep]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'modelsObat' => (empty($modelsObat)) ? [new Resep] : $modelsObat,
             ]);
         }
     }

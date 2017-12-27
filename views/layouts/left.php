@@ -34,8 +34,8 @@
                     // ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     // ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Obat', 'icon' => ' fa-medkit', 'url' => ['/obat'], 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => 'Resep', 'icon' => 'fa-pencil', 'url' => ['/resep'], 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => 'Dokter', 'icon' => 'fa-user-md', 'url' => ['/dokter'], 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Resep', 'icon' => 'heartbeat', 'url' => ['/resep'], 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Dokter', 'icon' => 'user-md', 'url' => ['/dokter'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [
                     //     'label' => 'Some tools',

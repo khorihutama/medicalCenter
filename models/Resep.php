@@ -43,9 +43,13 @@ class Resep extends \yii\db\ActiveRecord
         return [
             'id_resep' => 'Id Resep',
             'nama_pasien' => 'Nama Pasien',
-            'id_obat' => 'Id Obat',
+            'id_obat' => 'Nama Obat',
             'dosis' => 'Dosis',
             'status' => 'Status',
         ];
+    }
+
+    public function getObat(){
+      return $this->hasOne(Obat::className(), ['id_obat' => 'id_obat']);
     }
 }

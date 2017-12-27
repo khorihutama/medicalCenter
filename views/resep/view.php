@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id_resep',
             'nama_pasien',
-            'id_obat',
+            'obat.nama_obat',
             'dosis',
             'status',
         ],
