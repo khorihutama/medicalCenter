@@ -26,8 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id_resep',
             'nama_pasien',
-            'id_obat',
-            'dosis',
+            'created_at',
             'status',
 
             ['class' => 'yii\grid\ActionColumn'],

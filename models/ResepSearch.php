@@ -18,7 +18,7 @@ class ResepSearch extends Resep
     public function rules()
     {
         return [
-            [['id_resep', 'id_obat', 'dosis', 'status'], 'integer'],
+            [['id_resep', 'created_at', 'status'], 'integer'],
             [['nama_pasien'], 'safe'],
         ];
     }
@@ -60,8 +60,7 @@ class ResepSearch extends Resep
         // grid filtering conditions
         $query->andFilterWhere([
             'id_resep' => $this->id_resep,
-            'id_obat' => $this->id_obat,
-            'dosis' => $this->dosis,
+            'created_at' => $this->created_at,
             'status' => $this->status,
         ]);
 

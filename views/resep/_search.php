@@ -19,9 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nama_pasien') ?>
 
-    <?= $form->field($model, 'id_obat') ?>
-
-    <?= $form->field($model, 'dosis') ?>
+    <?= $form->field($model, 'created_at') ?>
 
     <?= $form->field($model, 'status') ?>
 

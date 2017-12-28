@@ -9,8 +9,7 @@ use Yii;
  *
  * @property integer $id_resep
  * @property string $nama_pasien
- * @property integer $id_obat
- * @property integer $dosis
+ * @property integer $created_at
  * @property integer $status
  */
 class Resep extends \yii\db\ActiveRecord
@@ -29,8 +28,8 @@ class Resep extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama_pasien', 'id_obat', 'dosis'], 'required'],
-            [['id_obat', 'dosis', 'status'], 'integer'],
+            [['nama_pasien'], 'required'],
+            [['created_at', 'status'], 'integer'],
             [['nama_pasien'], 'string', 'max' => 255],
         ];
     }
@@ -43,13 +42,8 @@ class Resep extends \yii\db\ActiveRecord
         return [
             'id_resep' => 'Id Resep',
             'nama_pasien' => 'Nama Pasien',
-            'id_obat' => 'Nama Obat',
-            'dosis' => 'Dosis',
+            'created_at' => 'Created At',
             'status' => 'Status',
         ];
-    }
-
-    public function getObat(){
-      return $this->hasOne(Obat::className(), ['id_obat' => 'id_obat']);
     }
 }
