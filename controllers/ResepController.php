@@ -8,7 +8,7 @@ use app\models\ResepSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\RefResep;
 /**
  * ResepController implements the CRUD actions for Resep model.
  */
@@ -64,6 +64,7 @@ class ResepController extends Controller
     public function actionCreate()
     {
         $model = new Resep();
+        $modelRefResep = [new RefResep];
         // $modelz =  $this->findModel(Yii::$app->user->identity->id);
         if ($model->load(Yii::$app->request->post())) {
             $model->created_at = time();
@@ -73,6 +74,7 @@ class ResepController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'modelRefResep' => (empty($modelRefResep)) ? [new RefResep] : $modelRefResep
             ]);
         }
     }
