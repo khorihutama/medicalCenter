@@ -72,11 +72,15 @@ class ResepController extends Controller
     {
         $model = new Resep();
         $modelRef = [new RefResep];
-        $data = ArrayHelper::map(Obat::find()->all(), 'id_obat', 'nama_obat');
+        $data = ArrayHelper::map(Obat::find()->select(['id_obat', 'nama_obat'] )->all(), 'id_obat', 'nama_obat');
 
         if ($model->load(Yii::$app->request->post())) {
             $model->created_at = time();
             $model->status = 0;
+            // echo '<pre>';
+            // var_dump($modelRef);
+            // echo '</pre>';
+            // exit();
             //     $modelRef->id_resep = $model->id_resep;
             $modelRef = Model::createMultiple(RefResep::classname());
             Model::loadMultiple($modelRef, \Yii::$app->request->post());
@@ -92,14 +96,17 @@ class ResepController extends Controller
 
             // validate all models
             $valid = $model->validate();
-            $valid = Model::validateMultiple($modelRef) && $valid;
+            $valid = Model::validateMultiple($modelRef, [
+              'obat',
+              'dosis',
+              ]) && $valid;
 
             if ($valid) {
                 $transaction = \Yii::$app->db->beginTransaction();
                 try {
                     if ($flag = $model->save(false)) {
                         foreach ($modelRef as $modelRefs) {
-                            $modelRefs->id_resep = $model->id;
+                            $modelRefs->id_resep = $model->id_resep;
                             if (! ($flag = $modelRefs->save(false))) {
                                 $transaction->rollBack();
                                 break;
@@ -108,7 +115,7 @@ class ResepController extends Controller
                     }
                     if ($flag) {
                         $transaction->commit();
-                        return $this->redirect(['view', 'id' => $model->id]);
+                        return $this->redirect(['view', 'id' => $model->id_resep]);
                     }
                 } catch (Exception $e) {
                     $transaction->rollBack();
@@ -119,30 +126,13 @@ class ResepController extends Controller
                     ]);
                 }
             }
-        }
-        else {
+        } else {
           return $this->render('create', [
               'model' => $model,
               'modelRef' => (empty($modelRef)) ? [new RefResep] : $modelRef,
               'data' => $data,
           ]);
         }
-        // if ($model->load(Yii::$app->request->post())) {
-        //     $model->created_at = time();
-        //     $model->status = 0;
-        //     $modelRef->id_resep = $model->id_resep;
-        //
-        //
-        //     $model->save();
-        //     $modelRef->save();
-        //     return $this->redirect(['view', 'id' => $model->id_resep]);
-        // } else {
-        //     return $this->render('create', [
-        //         'model' => $model,
-        //         'modelRef' => empty($modelRef) ? [new RefResep] : $modelRef,
-        //         'data' => $data,
-        //     ]);
-        // }
     }
 
     /**
