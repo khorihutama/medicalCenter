@@ -4,6 +4,13 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+$this->registerJsFile(
+    '@web/js/replace-yii2-dynamic-form.min.js',
+    [
+      'depends' => [\yii\web\JqueryAsset::className()],
+      'position' => 3
+    ]
+);
 
 if (Yii::$app->controller->action->id === 'login') {
 /**
