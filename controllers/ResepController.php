@@ -5,16 +5,16 @@ namespace app\controllers;
 use Yii;
 use app\models\Resep;
 use app\models\ResepSearch;
+use app\models\Obat;
+use app\models\Model;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\RefResep;
 use yii\helpers\ArrayHelper;
-use app\models\Obat;
-use app\base\Model;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-
+// use yii\bootstrap\Modal;
 
 /**
  * ResepController implements the CRUD actions for Resep model.
@@ -114,7 +114,7 @@ class ResepController extends Controller
                     $transaction->rollBack();
                     return $this->render('create', [
                         'model' => $model,
-                        'modelRef' => (empty($modelRef)) ? [new RefResep] : $modelRef,
+                        'modelRef' => $modelRef,
                         'data' => $data,
                     ]);
                 }
