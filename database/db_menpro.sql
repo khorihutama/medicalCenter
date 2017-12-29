@@ -10,7 +10,7 @@ Target Server Type    : MariaDB
 Target Server Version : 100124
 File Encoding         : 65001
 
-Date: 2017-12-28 22:54:57
+Date: 2017-12-29 17:36:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,6 +30,7 @@ CREATE TABLE `auth_assignment` (
 -- ----------------------------
 -- Records of auth_assignment
 -- ----------------------------
+INSERT INTO `auth_assignment` VALUES ('Dokter', '2', '1514543679');
 INSERT INTO `auth_assignment` VALUES ('Super Admin', '1', '1512620032');
 
 -- ----------------------------
@@ -162,6 +163,8 @@ INSERT INTO `auth_item` VALUES ('/user/delete', '2', null, null, null, '15126199
 INSERT INTO `auth_item` VALUES ('/user/index', '2', null, null, null, '1512619988', '1512619988');
 INSERT INTO `auth_item` VALUES ('/user/update', '2', null, null, null, '1512619988', '1512619988');
 INSERT INTO `auth_item` VALUES ('/user/view', '2', null, null, null, '1512619988', '1512619988');
+INSERT INTO `auth_item` VALUES ('Apoteker', '1', null, null, null, '1514542493', '1514542493');
+INSERT INTO `auth_item` VALUES ('Dokter', '1', null, null, null, '1514542463', '1514542463');
 INSERT INTO `auth_item` VALUES ('Super Admin', '1', null, null, null, '1512619965', '1512620006');
 
 -- ----------------------------
@@ -180,6 +183,19 @@ CREATE TABLE `auth_item_child` (
 -- ----------------------------
 -- Records of auth_item_child
 -- ----------------------------
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/obat/*');
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/obat/create');
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/obat/delete');
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/obat/index');
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/obat/update');
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/obat/view');
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/resep/index');
+INSERT INTO `auth_item_child` VALUES ('Apoteker', '/resep/view');
+INSERT INTO `auth_item_child` VALUES ('Dokter', '/resep/*');
+INSERT INTO `auth_item_child` VALUES ('Dokter', '/resep/create');
+INSERT INTO `auth_item_child` VALUES ('Dokter', '/resep/delete');
+INSERT INTO `auth_item_child` VALUES ('Dokter', '/resep/index');
+INSERT INTO `auth_item_child` VALUES ('Dokter', '/resep/view');
 INSERT INTO `auth_item_child` VALUES ('Super Admin', '/*');
 INSERT INTO `auth_item_child` VALUES ('Super Admin', '/admin/*');
 INSERT INTO `auth_item_child` VALUES ('Super Admin', '/admin/assignment/*');
@@ -373,11 +389,19 @@ CREATE TABLE `ref_resep` (
   `obat` varchar(255) NOT NULL,
   `dosis` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of ref_resep
 -- ----------------------------
+INSERT INTO `ref_resep` VALUES ('1', '5', '5', '12');
+INSERT INTO `ref_resep` VALUES ('2', '5', '6', '12');
+INSERT INTO `ref_resep` VALUES ('3', '6', '5', '12');
+INSERT INTO `ref_resep` VALUES ('4', '6', '6', '12');
+INSERT INTO `ref_resep` VALUES ('5', '7', '5', '12');
+INSERT INTO `ref_resep` VALUES ('6', '7', '3', '12');
+INSERT INTO `ref_resep` VALUES ('7', '8', '5', '12');
+INSERT INTO `ref_resep` VALUES ('8', '8', '3', '12');
 
 -- ----------------------------
 -- Table structure for resep
@@ -389,12 +413,16 @@ CREATE TABLE `resep` (
   `created_at` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id_resep`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of resep
 -- ----------------------------
 INSERT INTO `resep` VALUES ('3', 'ow', '1514455345', '0');
+INSERT INTO `resep` VALUES ('5', '12', '1514479378', '0');
+INSERT INTO `resep` VALUES ('6', '12', '1514479386', '0');
+INSERT INTO `resep` VALUES ('7', 'aw', '1514479398', '0');
+INSERT INTO `resep` VALUES ('8', 'aw', '1514479430', '0');
 
 -- ----------------------------
 -- Table structure for user
@@ -415,9 +443,10 @@ CREATE TABLE `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', 'NZLGRfv8Mj7RGVjzJ4jL3qVUDqj-5P9n', '$2y$13$aUA5CpFGDPp4JLEl7WEAauMLPvQpYtPMmNGGMg4GXTfT2K4Mj2yZ2', null, 'admin@ad.min', '10', '1512568699', '1512568699', '0');
+INSERT INTO `user` VALUES ('2', 'dokter', 'Wt5CFI-5QBo5d4OFA-ileBnyutxmOiem', '$2y$13$aUA5CpFGDPp4JLEl7WEAauMLPvQpYtPMmNGGMg4GXTfT2K4Mj2yZ2', null, 'dokter@dok.ter', '10', '1514543545', '1514543545', '0');
