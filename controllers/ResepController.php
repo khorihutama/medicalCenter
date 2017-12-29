@@ -61,10 +61,10 @@ class ResepController extends Controller
         // $modelRef = RefResep::findOne(app\models\RefResep->$id_resep);
         $modelRef = RefResep::findOne($id);
         // RefResep::findOne($id);
-        echo '<pre>';
-        var_dump($modelRef);
-        echo '</pre>';
-        exit();
+        // echo '<pre>';
+        // var_dump($modelRef);
+        // echo '</pre>';
+        // exit();
         return $this->render('view', [
             'model' => $this->findModel($id),
             'modelRef' => $modelRef,
