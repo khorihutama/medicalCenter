@@ -24,12 +24,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_resep',
+            // 'id_resep',
             'nama_pasien',
-            'created_at',
-            'status',
+            'created_at:date',
+            // 'status',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}',
+            'buttons' => [
+                'view' => function ($url, $model) {
+                    return Html::a(
+                                    '<i class="fa fa-binoculars"></i>', $url, ['class' => 'btn btn-info btn-xs']
+                    );
+                },
+              ],
+              ],
         ],
     ]); ?>
 </div>

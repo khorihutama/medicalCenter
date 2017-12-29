@@ -58,8 +58,16 @@ class ResepController extends Controller
      */
     public function actionView($id)
     {
+        // $modelRef = RefResep::findOne(app\models\RefResep->$id_resep);
+        $modelRef = RefResep::findOne($id);
+        // RefResep::findOne($id);
+        echo '<pre>';
+        var_dump($modelRef);
+        echo '</pre>';
+        exit();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'modelRef' => $modelRef,
         ]);
     }
 
@@ -141,18 +149,18 @@ class ResepController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_resep]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+    // public function actionUpdate($id)
+    // {
+    //     $model = $this->findModel($id);
+    //
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->id_resep]);
+    //     } else {
+    //         return $this->render('update', [
+    //             'model' => $model,
+    //         ]);
+    //     }
+    // }
 
     /**
      * Deletes an existing Resep model.

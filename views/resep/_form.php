@@ -68,7 +68,7 @@ $this->registerJs($script, 3);
            <?php foreach ($modelRef as $i => $modelRefs): ?>
                <div class="item panel panel-default"><!-- widgetBody -->
                    <div class="panel-heading">
-                       <h3 class="panel-title pull-left">Obat ke-<?= $i + 1 ?></h3>
+                       <h3 class="panel-title pull-left">Obat</h3>
                        <div class="pull-right">
                          <button type="button" class="tambah-item btn btn-success btn-xs"><i class="fa fa-plus"></i></button>
                          <button type="button" class="hapus-item btn btn-danger btn-xs"><i class="fa fa-minus"></i></button>
