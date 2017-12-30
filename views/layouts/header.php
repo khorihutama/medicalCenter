@@ -26,7 +26,7 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= $directoryAsset ?>/img/avatar5.png" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Medical</span>
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
                     </a>
 
                     <ul class="dropdown-menu">
