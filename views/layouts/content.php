@@ -37,10 +37,9 @@ use dmstr\widgets\Alert;
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Version</b> 2.0
+        <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; <?= date('Y') ?> <a href="http://poekwe.tk">MANPRO 4</a>.</strong>
 </footer>
 
 <!-- Control Sidebar -->

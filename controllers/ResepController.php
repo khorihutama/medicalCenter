@@ -58,16 +58,23 @@ class ResepController extends Controller
      */
     public function actionView($id)
     {
+        $id_res = $this->id;
         // $modelRef = RefResep::findOne(app\models\RefResep->$id_resep);
-        $modelRef = RefResep::findOne($id);
-        // RefResep::findOne($id);
+        // $modelRef = new RefResep();
+        $ref = RefResep::find(['id_resep' => $id_res])->all();
+
+        // $modelRef = [];
+        // foreach ($ref as $i => $val) {
+        //     $modelRef[$i] = RefResep::findOne($val->id);
+        // }
         // echo '<pre>';
         // var_dump($modelRef);
         // echo '</pre>';
         // exit();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'modelRef' => $modelRef,
+            'modelRef' => $ref,
         ]);
     }
 
@@ -85,11 +92,6 @@ class ResepController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->created_at = time();
             $model->status = 0;
-            // echo '<pre>';
-            // var_dump($modelRef);
-            // echo '</pre>';
-            // exit();
-            //     $modelRef->id_resep = $model->id_resep;
             $modelRef = Model::createMultiple(RefResep::classname());
             Model::loadMultiple($modelRef, \Yii::$app->request->post());
 
