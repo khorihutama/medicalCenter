@@ -9,7 +9,7 @@
             </div>
             <div class="pull-left info">
                 <!-- <p>Medical Center</p> -->
-                <p><?= Yii::$app->user->identity->username ?></p>
+                <p><?= (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->username : 'Medical Center' ?></p>
                 <?php if(!Yii::$app->user->isGuest) echo '<a href="#"><i class="fa fa-circle text-success"></i> Online</a>' ?>
             </div>
         </div>

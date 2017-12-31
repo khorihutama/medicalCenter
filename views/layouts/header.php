@@ -26,7 +26,8 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= $directoryAsset ?>/img/avatar5.png" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
+                        <span class="hidden-xs"><?= (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->username : 'Medical' ?></span>
+
                     </a>
 
                     <ul class="dropdown-menu">
@@ -58,7 +59,7 @@ use yii\helpers\Html;
                             <img src="<?= $directoryAsset ?>/img/avatar5.png" class="img-circle"
                                  alt="User Image"/>
                             <p>
-                                Medical Center
+                              <?= (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->username : 'Medical Center UNS' ?>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -69,7 +70,8 @@ use yii\helpers\Html;
                                   'Sign out',
                                   ['/site/logout'],
                                   ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                              ) ?>                            </div>
+                              ) ?>
+                            </div>
                             <div class="col-xs-4 text-center"></div>
                         </li>
                         <!-- Menu Footer-->
