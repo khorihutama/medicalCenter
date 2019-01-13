@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Obat;
 
 /**
  * This is the model class for table "ref_resep".
@@ -45,5 +46,12 @@ class RefResep extends \yii\db\ActiveRecord
             'obat' => 'Obat',
             'dosis' => 'Dosis',
         ];
+    }
+
+
+
+    public function getObats()
+    {
+        return $this->hasOne(Obat::className(), ['id_obat' => 'obat']);
     }
 }

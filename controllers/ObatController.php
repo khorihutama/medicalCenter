@@ -37,7 +37,6 @@ class ObatController extends Controller
     {
         $searchModel = new ObatSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

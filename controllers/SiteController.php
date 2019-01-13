@@ -64,7 +64,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+      $password = 123;
+        $hash = Yii::$app->getSecurity()->generatePasswordHash($password);
+      return $this->render('index', [
+          'hash' => $hash,
+      ]);
     }
 
     /**

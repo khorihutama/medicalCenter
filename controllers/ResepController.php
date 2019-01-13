@@ -14,6 +14,8 @@ use app\models\RefResep;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\data\ActiveDataProvider;
+
 // use yii\bootstrap\Modal;
 
 /**
@@ -71,10 +73,13 @@ class ResepController extends Controller
         // var_dump($modelRef);
         // echo '</pre>';
         // exit();
-
+        $dataProvider = new ActiveDataProvider([
+             'query' => RefResep::find()->where(['id_resep' => $id]),
+             'pagination' => false,
+         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'modelRef' => $ref,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

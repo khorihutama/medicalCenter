@@ -35,17 +35,17 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'status',
         ],
     ]) ?>
+
     <h4>Obat</h4>
-    <!-- <div class="table-responsive">
-				<table class="table table-striped table-bordered detail-view">
-					<tbody>
+    <div class="card-body">
+          <?= GridView::widget([
+              'dataProvider' => $dataProvider,
+              'columns' => [
+                  ['class' => 'yii\grid\SerialColumn'],
+                  'obats.nama_obat',
+                  'dosis'
+              ],
+          ]) ?>
+      </div>
 
-						<php foreach ($modelRef as $j) { ?>
-							<tr><th>Obat </th><td><= $modelRef->obat ?></td></tr>
-							<tr><th>Dosis</th><td><= $modelRef->dosis ?></td></tr>
-						<php } ?>
-					</tbody>
-				</table>
-			</div>
-
-</div> -->
+</div>
